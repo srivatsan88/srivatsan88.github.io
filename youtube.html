@@ -1,0 +1,54 @@
+<html>
+<style type="text/css">
+    #timenow{
+        display: block;
+        text-align: center;
+        line-height: 100%;
+    }
+    #clock{
+        display: block;
+        text-align: center;
+        line-height: 100%;
+    }
+</style>
+<script type="text/javascript">
+function seturl() {
+    url =  document.getElementById('youtube').value;
+
+    if (url.indexOf("&") != -1) {
+    	url = url.substring(0, url.indexOf("&"));
+    }
+
+    if(url.includes("=")) {
+	videoid = url.split('=').pop();
+    } else {
+	videoid = url.split('/').pop();
+    }	
+
+    embedurl="https://www.youtube.com/embed/"
+
+    document.getElementById('youframe').src = embedurl.concat(videoid).concat("?rel=0");
+}
+
+</script>
+
+<body>
+<center><strong>Hi, Welcome to Your Personal Youtube Link </strong></center><br/>
+<b><label id="clock">Clock</label></b><br/>
+<script>
+    let clock = document.getElementById('clock');
+
+    setInterval(function(){
+        let date = new Date();
+        clock.innerHTML = date.toLocaleTimeString();
+    }, 1000)
+</script>
+<label for="URL"><b>Enter YouTube URL Here :  <b/></label>
+<input type="text" id="youtube" name="youtube" size="100" value="" /><br/>
+<input type="submit" value="Submit" onClick="seturl()">
+<br/><br/>
+<iframe width="720" height="500" id="youframe" src="" frameborder="0" allowfullscreen>
+</iframe>
+
+</body>
+</html>
